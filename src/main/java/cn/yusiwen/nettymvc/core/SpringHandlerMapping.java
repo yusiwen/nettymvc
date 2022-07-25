@@ -2,10 +2,11 @@ package cn.yusiwen.nettymvc.core;
 
 import java.util.Map;
 
-import cn.yusiwen.nettymvc.core.annotation.Endpoint;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+
+import cn.yusiwen.nettymvc.core.annotation.Endpoint;
 
 /**
  * @author yusiwen

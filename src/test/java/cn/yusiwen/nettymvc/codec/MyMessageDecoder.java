@@ -3,8 +3,8 @@ package cn.yusiwen.nettymvc.codec;
 import java.nio.charset.StandardCharsets;
 
 import cn.yusiwen.nettymvc.model.MyHeader;
-import cn.yusiwen.nettymvc.session.Session;
 import cn.yusiwen.nettymvc.model.MyMessage;
+import cn.yusiwen.nettymvc.session.Session;
 import io.netty.buffer.ByteBuf;
 
 public class MyMessageDecoder implements MessageDecoder {

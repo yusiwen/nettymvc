@@ -11,8 +11,9 @@ import java.util.function.Function;
  * @param <K>
  *            Key
  * @param <S>
- *            Value
+ *            Source value
  * @param <T>
+ *            Target value
  */
 public final class AdapterMap<K, S, T> extends AbstractMap<K, T> {
 

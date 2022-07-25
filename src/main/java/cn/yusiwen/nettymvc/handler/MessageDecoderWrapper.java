@@ -1,11 +1,11 @@
 package cn.yusiwen.nettymvc.handler;
 
-import cn.yusiwen.nettymvc.core.model.Message;
-import cn.yusiwen.nettymvc.session.AbstractPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.yusiwen.nettymvc.codec.MessageDecoder;
+import cn.yusiwen.nettymvc.core.model.Message;
+import cn.yusiwen.nettymvc.session.AbstractPacket;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelHandler;

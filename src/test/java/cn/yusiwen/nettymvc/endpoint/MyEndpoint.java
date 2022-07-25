@@ -2,9 +2,9 @@ package cn.yusiwen.nettymvc.endpoint;
 
 import cn.yusiwen.nettymvc.core.annotation.Endpoint;
 import cn.yusiwen.nettymvc.core.annotation.Mapping;
-import cn.yusiwen.nettymvc.session.Session;
 import cn.yusiwen.nettymvc.model.MyHeader;
 import cn.yusiwen.nettymvc.model.MyMessage;
+import cn.yusiwen.nettymvc.session.Session;
 
 @Endpoint
 public class MyEndpoint {

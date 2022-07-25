@@ -1,12 +1,12 @@
 package cn.yusiwen.nettymvc.endpoint;
 
-import cn.yusiwen.nettymvc.core.HandlerInterceptor;
-import cn.yusiwen.nettymvc.model.MyHeader;
-import cn.yusiwen.nettymvc.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.yusiwen.nettymvc.core.HandlerInterceptor;
+import cn.yusiwen.nettymvc.model.MyHeader;
 import cn.yusiwen.nettymvc.model.MyMessage;
+import cn.yusiwen.nettymvc.session.Session;
 
 public class MyHandlerInterceptor implements HandlerInterceptor<MyMessage> {
 
