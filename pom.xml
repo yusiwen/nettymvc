@@ -5,11 +5,11 @@
         <groupId>cn.yusiwen</groupId>
         <artifactId>java-base-parent</artifactId>
         <version>6</version>
-        <relativePath/>
+        <relativePath />
         <!-- lookup parent from repository -->
     </parent>
     <artifactId>nettymvc</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>nettymvc</name>
     <description>Netty MVC</description>
     <url>https://github.com/yusiwen/nettymvc</url>
