@@ -9,7 +9,7 @@
         <!-- lookup parent from repository -->
     </parent>
     <artifactId>nettymvc</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>nettymvc</name>
     <description>Netty MVC</description>
     <url>https://github.com/yusiwen/nettymvc</url>
@@ -23,7 +23,7 @@
         <connection>scm:git:ssh://git@github.com/yusiwen/${project.artifactId}.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/yusiwen/${project.artifactId}.git</developerConnection>
         <url>https://github.com/yusiwen/${project.artifactId}</url>
-        <tag>HEAD</tag>
+        <tag>v1.0.0</tag>
     </scm>
     <developers>
         <developer>
