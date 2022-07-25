@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>cn.yusiwen</groupId>
+    <artifactId>java-base-parent</artifactId>
+    <version>6</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+
+  <artifactId>nettymvc</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <name>nettymvc</name>
+  <description>Netty MVC</description>
+  <url>https://github.com/yusiwen/nettymvc</url>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https:github.com/yusiwen/${project.artifactId}.git</connection>
+    <developerConnection>scm:git:https:github.com/yusiwen/${project.artifactId}.git</developerConnection>
+    <url>https:github.com/yusiwen/${project.artifactId}</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>Siwen Yu</name>
+      <email>yusiwen@gmail.com</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>+8</timezone>
+    </developer>
+  </developers>
+
+  <properties>
+    <netty.version>4.1.79.Final</netty.version>
+    <caffeine.verison>2.9.3</caffeine.verison>
+    <reactor.version>3.4.21</reactor.version>
+    <slf4j.version>1.7.36</slf4j.version>
+    <spring.version>5.3.22</spring.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-handler</artifactId>
+      <version>${netty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.ben-manes.caffeine</groupId>
+      <artifactId>caffeine</artifactId>
+      <version>${caffeine.verison}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.projectreactor</groupId>
+      <artifactId>reactor-core</artifactId>
+      <version>${reactor.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.17.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.17.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

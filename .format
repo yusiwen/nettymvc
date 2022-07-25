@@ -1,0 +1,3 @@
+用来触发maven profile "format"
+如果不希望执行maven命令时自动格式化代码，则删除此文件
+详见：https://github.com/yusiwen/spring-base-dependencies/blob/master/pom.xml
