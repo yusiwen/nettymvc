@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.yusiwen.nettymvc.codec.MessageEncoder;
+import cn.yusiwen.nettymvc.core.model.Message;
 import cn.yusiwen.nettymvc.session.AbstractPacket;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -16,10 +17,12 @@ import io.netty.handler.codec.EncoderException;
 /**
  * 基础消息编码
  *
+ * @param <T>
+ *            Message
  * @author yusiwen
  */
 @ChannelHandler.Sharable
-public class MessageEncoderWrapper extends ChannelOutboundHandlerAdapter {
+public class MessageEncoderWrapper<T extends Message> extends ChannelOutboundHandlerAdapter {
 
     /**
      * Logger
@@ -29,15 +32,16 @@ public class MessageEncoderWrapper extends ChannelOutboundHandlerAdapter {
     /**
      * Message encoder
      */
-    private final MessageEncoder encoder;
+    private final MessageEncoder<T> encoder;
 
-    public MessageEncoderWrapper(MessageEncoder encoder) {
+    public MessageEncoderWrapper(MessageEncoder<T> encoder) {
         this.encoder = encoder;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) {
-        AbstractPacket packet = (AbstractPacket) msg;
+        AbstractPacket<T> packet = (AbstractPacket<T>) msg;
         ByteBuf output = packet.take();
         try {
             if (output == null) {

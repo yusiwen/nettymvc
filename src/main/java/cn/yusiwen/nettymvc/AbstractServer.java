@@ -47,7 +47,7 @@ public abstract class AbstractServer {
 
     public synchronized boolean start() {
         if (isRunning) {
-            LOG.warn("==={}已经启动,port:{}===", config.name, config.port);
+            LOG.info("==={}已经启动,port:{}===", config.name, config.port);
             return isRunning;
         }
 
@@ -63,7 +63,7 @@ public abstract class AbstractServer {
         }
 
         if (isRunning == future.isSuccess()) {
-            LOG.warn("==={}启动成功,port:{}===", config.name, config.port);
+            LOG.info("==={}启动成功,port:{}===", config.name, config.port);
         }
         return isRunning;
     }
@@ -77,6 +77,6 @@ public abstract class AbstractServer {
         if (businessGroup != null) {
             businessGroup.shutdown();
         }
-        LOG.warn("==={}已经停止,port:{}===", config.name, config.port);
+        LOG.info("==={}已经停止,port:{}===", config.name, config.port);
     }
 }

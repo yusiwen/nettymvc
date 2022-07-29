@@ -5,9 +5,11 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.socket.DatagramPacket;
 
 /**
+ * @param <T>
+ *            Message
  * @author yusiwen
  */
-public abstract class AbstractPacket {
+public abstract class AbstractPacket<T extends Message> {
 
     /**
      * Session
@@ -17,33 +19,33 @@ public abstract class AbstractPacket {
     /**
      * Message
      */
-    protected Message message;
+    protected T message;
     /**
      * ByteBuf
      */
     protected ByteBuf byteBuf;
 
-    private AbstractPacket(Session session, Message message, ByteBuf byteBuf) {
+    private AbstractPacket(Session session, T message, ByteBuf byteBuf) {
         this.session = session;
         this.message = message;
         this.byteBuf = byteBuf;
     }
 
-    public static AbstractPacket of(Session session, Message message) {
+    public static <T extends Message> AbstractPacket<T> of(Session session, T message) {
         if (session.isUdp()) {
-            return new UDP(session, message, null);
+            return new UDP<>(session, message, null);
         }
-        return new TCP(session, message, null);
+        return new TCP<>(session, message, null);
     }
 
-    public static AbstractPacket of(Session session, ByteBuf message) {
+    public static <T extends Message> AbstractPacket<T> of(Session session, ByteBuf message) {
         if (session.isUdp()) {
-            return new UDP(session, null, message);
+            return new UDP<>(session, null, message);
         }
-        return new TCP(session, null, message);
+        return new TCP<>(session, null, message);
     }
 
-    public AbstractPacket replace(Message message) {
+    public AbstractPacket<T> replace(T message) {
         this.message = message;
         return this;
     }
@@ -60,7 +62,7 @@ public abstract class AbstractPacket {
         return session;
     }
 
-    public Message getMessage() {
+    public T getMessage() {
         return message;
     }
 
@@ -68,8 +70,8 @@ public abstract class AbstractPacket {
         return byteBuf;
     }
 
-    private static class TCP extends AbstractPacket {
-        private TCP(Session session, Message message, ByteBuf byteBuf) {
+    private static class TCP<T extends Message> extends AbstractPacket<T> {
+        private TCP(Session session, T message, ByteBuf byteBuf) {
             super(session, message, byteBuf);
         }
 
@@ -79,8 +81,8 @@ public abstract class AbstractPacket {
         }
     }
 
-    private static class UDP extends AbstractPacket {
-        private UDP(Session session, Message message, ByteBuf byteBuf) {
+    private static class UDP<T extends Message> extends AbstractPacket<T> {
+        private UDP(Session session, T message, ByteBuf byteBuf) {
             super(session, message, byteBuf);
         }
 

@@ -11,16 +11,18 @@ import cn.yusiwen.nettymvc.core.handler.AbstractHandler;
 import cn.yusiwen.nettymvc.core.model.Message;
 import cn.yusiwen.nettymvc.session.AbstractPacket;
 import cn.yusiwen.nettymvc.session.Session;
-import cn.yusiwen.nettymvc.util.Stopwatch;
+import cn.yusiwen.nettymvc.util.StopWatch;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
+ * @param <T>
+ *            Message
  * @author yusiwen
  */
 @ChannelHandler.Sharable
-public class DispatcherHandler extends ChannelInboundHandlerAdapter {
+public class DispatcherHandler<T extends Message> extends ChannelInboundHandlerAdapter {
 
     /**
      * Logger
@@ -30,7 +32,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
     /**
      * Stopwatch
      */
-    private Stopwatch s;
+    private StopWatch s;
 
     /**
      * HandlerMapping
@@ -40,7 +42,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
     /**
      * HandlerInterceptor
      */
-    private final HandlerInterceptor interceptor;
+    private final HandlerInterceptor<T> interceptor;
 
     /**
      * ExecutorService
@@ -50,9 +52,9 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
     /**
      * stop watch flag
      */
-    private boolean enableStopwatch = false;
+    private boolean enableStopwatch;
 
-    public DispatcherHandler(HandlerMapping handlerMapping, HandlerInterceptor interceptor, ExecutorService executor,
+    public DispatcherHandler(HandlerMapping handlerMapping, HandlerInterceptor<T> interceptor, ExecutorService executor,
             boolean enableStopwatch) {
         this.handlerMapping = handlerMapping;
         this.interceptor = interceptor;
@@ -60,7 +62,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
         this.enableStopwatch = enableStopwatch;
 
         if (isEnableStopwatch()) {
-            s = new Stopwatch().start();
+            s = new StopWatch().start();
         }
     }
 
@@ -78,12 +80,12 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
             s.increment();
         }
 
-        AbstractPacket packet = (AbstractPacket) msg;
-        Message request = packet.getMessage();
+        AbstractPacket<T> packet = (AbstractPacket<T>) msg;
+        T request = packet.getMessage();
         AbstractHandler handler = handlerMapping.getHandler(request.getMessageId());
 
         if (handler == null) {
-            Message response = interceptor.notSupported(request, packet.getSession());
+            T response = interceptor.notSupported(request, packet.getSession());
             if (response != null) {
                 ctx.writeAndFlush(packet.replace(response));
             }
@@ -96,10 +98,10 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    private void channelRead0(ChannelHandlerContext ctx, AbstractPacket packet, AbstractHandler handler) {
+    private void channelRead0(ChannelHandlerContext ctx, AbstractPacket<T> packet, AbstractHandler handler) {
         Session session = packet.getSession();
-        Message request = packet.getMessage();
-        Message response;
+        T request = packet.getMessage();
+        T response;
         long time = System.currentTimeMillis();
 
         try {

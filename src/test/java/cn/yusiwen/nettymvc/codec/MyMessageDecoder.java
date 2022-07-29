@@ -7,7 +7,7 @@ import cn.yusiwen.nettymvc.model.MyMessage;
 import cn.yusiwen.nettymvc.session.Session;
 import io.netty.buffer.ByteBuf;
 
-public class MyMessageDecoder implements MessageDecoder {
+public class MyMessageDecoder implements MessageDecoder<MyMessage> {
 
     @Override
     public MyMessage decode(ByteBuf buf, Session session) {

@@ -8,12 +8,12 @@ import org.slf4j.LoggerFactory;
 /**
  * @author yusiwen
  */
-public class Stopwatch {
+public class StopWatch {
 
     /**
      * Logger
      */
-    private static final Logger LOG = LoggerFactory.getLogger(Stopwatch.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StopWatch.class);
 
     /**
      * Count
@@ -25,7 +25,7 @@ public class Stopwatch {
     private final Thread thread;
 
     @SuppressWarnings("PMD.AvoidManuallyCreateThreadRule")
-    public Stopwatch() {
+    public StopWatch() {
         thread = new Thread(() -> {
             long start;
             while (true) {
@@ -53,7 +53,7 @@ public class Stopwatch {
         thread.setDaemon(true);
     }
 
-    public Stopwatch start() {
+    public StopWatch start() {
         this.thread.start();
         return this;
     }

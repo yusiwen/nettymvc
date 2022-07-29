@@ -60,10 +60,7 @@ public class MyMessage implements Message {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("header=").append(header);
-        sb.append(", body='").append(body).append('\'');
-        sb.append('}');
-        return sb.toString();
+        String sb = "{" + "header=" + header + ", body='" + body + '\'' + '}';
+        return sb;
     }
 }

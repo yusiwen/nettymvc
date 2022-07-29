@@ -20,14 +20,14 @@ public class ClassUtils {
     private ClassUtils() {
     }
 
-    public static List<Class> getClassList(String packageName, Class<? extends Annotation> annotationClass) {
-        List<Class> classList = getClassList(packageName);
+    public static List<Class<?>> getClassList(String packageName, Class<? extends Annotation> annotationClass) {
+        List<Class<?>> classList = getClassList(packageName);
         classList.removeIf(next -> !next.isAnnotationPresent(annotationClass));
         return classList;
     }
 
-    public static List<Class> getClassList(String packageName) {
-        List<Class> classList = new LinkedList<>();
+    public static List<Class<?>> getClassList(String packageName) {
+        List<Class<?>> classList = new LinkedList<>();
         String path = packageName.replace(".", "/");
         try {
             Enumeration<URL> urls = ClassUtils.getClassLoader().getResources(path);
@@ -59,15 +59,13 @@ public class ClassUtils {
                     }
                 }
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (URISyntaxException e) {
+        } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
         return classList;
     }
 
-    private static void addClass(List<Class> classList, String packagePath, String packageName) {
+    private static void addClass(List<Class<?>> classList, String packagePath, String packageName) {
         try {
             File[] files = new File(packagePath)
                     .listFiles(file -> file.isDirectory() || file.getName().endsWith(".class"));
@@ -98,11 +96,11 @@ public class ClassUtils {
         }
     }
 
-    private static void addClass(List<Class> classList, String className) {
+    private static void addClass(List<Class<?>> classList, String className) {
         classList.add(loadClass(className, false));
     }
 
-    public static Class loadClass(String className, boolean isInitialized) {
+    public static Class<?> loadClass(String className, boolean isInitialized) {
         try {
             return Class.forName(className, isInitialized, getClassLoader());
         } catch (ClassNotFoundException e) {

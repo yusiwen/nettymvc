@@ -14,13 +14,10 @@ public class MyMessageEncoder implements MessageEncoder<MyMessage> {
     public ByteBuf encode(MyMessage message, Session session) {
         MyHeader header = message.getHeader();
 
-        StringBuilder msg = new StringBuilder();
-        msg.append(header.getClientId()).append(',');
-        msg.append(header.getType()).append(',');
-        msg.append(header.getSerialNo()).append(';');
-        msg.append(message.getBody());
+        String msg = header.getClientId() + ',' + header.getType() + ',' + header.getSerialNo() + ';'
+                + message.getBody();
 
-        byte[] bytes = msg.toString().getBytes(StandardCharsets.UTF_8);
+        byte[] bytes = msg.getBytes(StandardCharsets.UTF_8);
         return Unpooled.wrappedBuffer(bytes);
     }
 }

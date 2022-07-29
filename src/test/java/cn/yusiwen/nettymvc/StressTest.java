@@ -3,7 +3,7 @@ package cn.yusiwen.nettymvc;
 import java.nio.charset.StandardCharsets;
 
 import cn.yusiwen.nettymvc.util.Client;
-import cn.yusiwen.nettymvc.util.Stopwatch;
+import cn.yusiwen.nettymvc.util.StopWatch;
 
 /**
  * 压力测试<br>
@@ -15,7 +15,7 @@ public class StressTest {
 
     private static final byte[] bytes = "|123,1,123;testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest|"
             .getBytes(StandardCharsets.UTF_8);
-    private static final Stopwatch STOPWATCH = new Stopwatch().start();
+    private static final StopWatch STOPWATCH = new StopWatch().start();
 
     public static final String host = "127.0.0.1";
     public static final int port = QuickStart.port;

@@ -16,10 +16,12 @@ import io.netty.handler.codec.DecoderException;
 /**
  * 基础消息解码
  *
+ * @param <T>
+ *            Message
  * @author yusiwen
  */
 @ChannelHandler.Sharable
-public class MessageDecoderWrapper extends ChannelInboundHandlerAdapter {
+public class MessageDecoderWrapper<T extends Message> extends ChannelInboundHandlerAdapter {
 
     /**
      * Logger
@@ -29,18 +31,19 @@ public class MessageDecoderWrapper extends ChannelInboundHandlerAdapter {
     /**
      * Message decoder
      */
-    private final MessageDecoder decoder;
+    private final MessageDecoder<T> decoder;
 
-    public MessageDecoderWrapper(MessageDecoder decoder) {
+    public MessageDecoderWrapper(MessageDecoder<T> decoder) {
         this.decoder = decoder;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        AbstractPacket packet = (AbstractPacket) msg;
+        AbstractPacket<T> packet = (AbstractPacket<T>) msg;
         ByteBuf input = packet.take();
         try {
-            Message message = decoder.decode(input, packet.getSession());
+            T message = decoder.decode(input, packet.getSession());
             if (message != null) {
                 ctx.fireChannelRead(packet.replace(message));
             }
