@@ -5,11 +5,11 @@
         <groupId>cn.yusiwen</groupId>
         <artifactId>java-base-parent</artifactId>
         <version>6</version>
-        <relativePath/>
+        <relativePath />
         <!-- lookup parent from repository -->
     </parent>
     <artifactId>nettymvc</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <name>nettymvc</name>
     <description>Netty MVC</description>
     <url>https://github.com/yusiwen/nettymvc</url>
@@ -23,7 +23,7 @@
         <connection>scm:git:ssh://git@github.com/yusiwen/${project.artifactId}.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/yusiwen/${project.artifactId}.git</developerConnection>
         <url>https://github.com/yusiwen/${project.artifactId}</url>
-        <tag>v1.0.1</tag>
+        <tag>v1.0.0</tag>
     </scm>
     <developers>
         <developer>
